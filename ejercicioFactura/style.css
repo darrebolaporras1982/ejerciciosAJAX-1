@@ -1,0 +1,61 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1{
+    text-align: center;
+}
+
+.form_style{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color:rgb(246, 246, 246);
+    border: 2px solid lightgray;
+    border-radius: 10px;
+    margin-left: 3em;
+    box-shadow: 5px 5px 10px 0px darkgray ;
+    padding: .5em;
+}
+
+.form_style>input{
+    width: 80%;
+    height: 25px;
+    border-radius: 5px;
+    border-color: transparent;
+    box-shadow: 5px 5px 10px 0px darkgray ;
+    margin: 10px;
+}
+
+.form_style>label{
+    margin-left: 15px;
+}
+
+#submit:hover{
+    scale: 1.090;
+    transition: 250ms;
+}
+
+#submit{
+    background-color: rgb(247, 206, 131);
+}
+
+.cont-superior{
+    margin-top: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tabla-articulos{
+    border-radius: 10px;
+    margin-left: 2em;
+    border: 2px solid rgb(247, 206, 131);
+    border-spacing: 10px;
+    background-color:rgb(246, 246, 246);
+    text-align: center;
+    box-shadow: 5px 5px 10px 0px darkgray ;
+}
+
