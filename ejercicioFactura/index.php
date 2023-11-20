@@ -17,7 +17,7 @@
     <h1>Factura</h1>
     <div class="cont-superior">
         <div class="formulario">
-            <form action="" method="post" class="form_style">
+            <form action="index.php" method="post" class="form_style">
                 <label for="">Producto</label>
                 <input type="text" name="producto" id="producto">
                 <label for="">Cantidad</label>
@@ -40,8 +40,13 @@
             </table>
         </div>
     </div>
-    <table class="tabla-articulos" tabla_factura>
+    <table class="tabla-articulos" id="tabla_factura">
     </table>
 </body>
-
 </html>
+<?php
+    if(isset($_POST['producto'])&& !empty($_POST['producto'])){
+        $producto=$_POST['producto'];
+        $precio=queryArticulo($producto);
+    }
+?>

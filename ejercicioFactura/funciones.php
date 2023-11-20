@@ -26,7 +26,22 @@
         }
     }
 
-
+    function queryArticulo($descripcion){
+        $conexion=crear_conexion();
+        $consulta="SELECT * FROM articulo WHERE descripcion like=:descripcion;";
+        $stmt=$conexion->prepare($consulta);
+        $stmt->bindParam(":descripcion",$descripcion);
+        $stmt->execute();
+        $filas=$stmt->rowCount();
+        if($filas<0){
+             return false;
+        }else{
+           $filas=$stmt->fetch(PDO::FETCH_ASSOC);
+           $precio=$filas["precio_unitario"];
+           return $precio;
+        }
+    }
+    
 
 
 

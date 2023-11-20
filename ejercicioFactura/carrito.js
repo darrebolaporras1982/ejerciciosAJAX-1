@@ -29,7 +29,7 @@ class articulo{
     }
 
 }
-class carro extends articulo{
+/* class carro extends articulo{
     constructor(nombre,precio,cantidad){
         super(nombre);
         super(precio);
@@ -52,5 +52,5 @@ class carro extends articulo{
             total+=element.totalSinIVAunitario();
         });
         return total;
-    }
-}
+    } 
+}*/
