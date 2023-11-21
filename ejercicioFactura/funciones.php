@@ -21,12 +21,12 @@
         $stmt->execute();
         $filas=$stmt->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode($filas);
+        
     }
     
-
     function queryArticulo($descripcion){
         $conexion=crear_conexion();
-        $consulta="SELECT * FROM articulo WHERE descripcion like=:descripcion;";
+        $consulta="SELECT * FROM articulo WHERE descripcion like= :descripcion;";
         $stmt=$conexion->prepare($consulta);
         $stmt->bindParam(":descripcion",$descripcion);
         $stmt->execute();
@@ -35,7 +35,7 @@
             return false;
         }else{
            $filas=$stmt->fetch(PDO::FETCH_ASSOC);
-            return true;
+           echo json_encode($filas);
         }
     }
     

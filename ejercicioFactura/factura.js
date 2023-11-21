@@ -18,7 +18,6 @@ function init(){
 }
 function validarCampos(){
     validarProducto();
-    console.log(producto);
     validarCantidad();
     if(Error.length>0){
         alert(Error);
@@ -57,8 +56,20 @@ function insertarLineArticulo(){
 
 }
 function encontrarArticulo(){
+    producto=document.getElementById("producto").value;
     
+    fetch('EncuentraArticulo.php',{
+        method:'POST',
+        body:producto
+    })
+    .then(function (resultado) {
+        return resultado.json();
+    })
+    .then(function (data){
+        console.log(data);
+    });
 }
+
 function mostrarTabla(){
     fetch('viewTablaProductos.php')//peticion 
     .then(function (res) {//si es correcta recoge la respuesta
