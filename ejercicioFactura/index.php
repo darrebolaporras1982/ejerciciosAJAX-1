@@ -17,7 +17,7 @@
     <h1>Factura</h1>
     <div class="cont-superior">
         <div class="formulario">
-            <form action="index.php" method="post" class="form_style">
+            <form action="#" method="post" class="form_style">
                 <label for="">Producto</label>
                 <input type="text" name="producto" id="producto">
                 <label for="">Cantidad</label>
