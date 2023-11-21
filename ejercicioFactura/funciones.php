@@ -14,17 +14,15 @@
     }
     return $conexion;
 }
-
     function queryTotal(){
         $conexion=crear_conexion();
         $consulta="SELECT * FROM articulo;";
         $stmt=$conexion->prepare($consulta);
         $stmt->execute();
         $filas=$stmt->fetchAll(PDO::FETCH_ASSOC);
-        foreach($filas as $fila){
-            echo "<tr><td>".$fila['id_articulo']."</td><td>".$fila["descripcion"]."</td><td>".$fila["precio_unitario"]."</td></tr>";
-        }
+        echo json_encode($filas);
     }
+    
 
     function queryArticulo($descripcion){
         $conexion=crear_conexion();
@@ -34,11 +32,10 @@
         $stmt->execute();
         $filas=$stmt->rowCount();
         if($filas<0){
-             return false;
+            return false;
         }else{
            $filas=$stmt->fetch(PDO::FETCH_ASSOC);
-           $precio=$filas["precio_unitario"];
-           return $precio;
+            return true;
         }
     }
     
