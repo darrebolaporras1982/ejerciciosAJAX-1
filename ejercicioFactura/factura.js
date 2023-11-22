@@ -4,6 +4,8 @@ let cantidad;
 let tabla_factura;
 const PATRON=/^[a-zA-Z\sáéíóúüñÑ]+$/;
 let Error=[];
+let totalFactura=[];
+let TOTAL=0;
 let mensaje="";
 document.addEventListener("DOMContentLoaded",init);
 
@@ -23,7 +25,7 @@ function validarCampos(){
         alert(Error);
         Error=[];
     }else{
-        insertarLineArticulo();
+        encontrarArticulo();
     }
 }
 function validarProducto(){
@@ -46,18 +48,42 @@ function validarCantidad(){
     }
 }
 
-function insertarLineArticulo(){
-    encontrarArticulo();
-    if(!encontrarArticulo){
-        alert('No tienes articulos con ese nombre en tu base de datos');
-    }else{
+ function insertarLineArticulo(objeto){
+    let name=objeto.descripcion;
+    let precio=objeto.precio_unitario;
+    let solicitud=document.getElementById("cantidad").value;
+    let total=precio*solicitud;
+    let totalIVA=total+(total*0.21);
 
+    let tbody=document.getElementById("segundaTabla");
+    let tr=document.createElement("tr");
+    let tdname=document.createElement("td");
+    tdname.textContent=name;
+    let tdPunitario=document.createElement("td");
+    tdPunitario.textContent=precio;
+    let tdCantidad=document.createElement("td");
+    tdCantidad.textContent=solicitud;
+    let tdtotal=document.createElement("td");
+    tdtotal.textContent=total;
+    let tdConIva=document.createElement("td");
+    tdConIva.textContent=totalIVA;
+    let parseototal=parseFloat(totalIVA);
+    tr.appendChild(tdname);
+    tr.appendChild(tdPunitario);
+    tr.appendChild(tdCantidad);
+    tr.appendChild(tdtotal);
+    tr.appendChild(tdConIva);
+    tbody.appendChild(tr);
+
+    totalFactura.push(parseototal);
+    let factura=document.getElementById("factura");
+    for(let i=0;i<totalFactura.length;i++){
+        TOTAL=TOTAL+totalFactura[i];
     }
-
-}
+    factura.textContent=`${TOTAL} EUROS`;
+} 
 function encontrarArticulo(){
     producto=document.getElementById("producto").value;
-    
     fetch('EncuentraArticulo.php',{
         method:'POST',
         body:producto
@@ -65,8 +91,8 @@ function encontrarArticulo(){
     .then(function (resultado) {
         return resultado.json();
     })
-    .then(function (data){
-        console.log(data);
+    .then(function (data){//en este punto tengo devuelto el objeto con el nombre y el precio
+        insertarLineArticulo(data);
     });
 }
 
@@ -94,3 +120,4 @@ function mostrarTabla(){
         });
     });
 }
+

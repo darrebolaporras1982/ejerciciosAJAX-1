@@ -26,13 +26,14 @@
     
     function queryArticulo($descripcion){
         $conexion=crear_conexion();
-        $consulta="SELECT * FROM articulo WHERE descripcion like= :descripcion;";
+        $consulta="SELECT * FROM articulo WHERE descripcion = :descripcion;";
         $stmt=$conexion->prepare($consulta);
         $stmt->bindParam(":descripcion",$descripcion);
         $stmt->execute();
         $filas=$stmt->rowCount();
         if($filas<0){
-            return false;
+           $mensaje="No se ha encontrado";
+           return $mensaje;
         }else{
            $filas=$stmt->fetch(PDO::FETCH_ASSOC);
            echo json_encode($filas);
