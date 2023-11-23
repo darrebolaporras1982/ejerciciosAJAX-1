@@ -26,7 +26,7 @@
     
     function queryArticulo($descripcion){
         $conexion=crear_conexion();
-        $consulta="SELECT * FROM articulo WHERE descripcion like= :descripcion;";
+        $consulta="SELECT * FROM articulo WHERE descripcion = :descripcion;";
         $stmt=$conexion->prepare($consulta);
         $stmt->bindParam(":descripcion",$descripcion);
         $stmt->execute();
